@@ -1,0 +1,68 @@
+runconfig:
+  mode: eval
+  target_device: CPU
+trainer:
+  init:
+    backend:
+      backend_type: CPU
+    checkpoint:
+      steps: 1
+    logging:
+      log_steps: 1
+    loop:
+      max_steps: 20
+    model:
+        attention_dropout_rate: 0.0
+        attention_module: multiquery_attention
+        attention_sliding_window_length: null
+        attention_type: scaled_dot_product
+        dropout_rate: 0.0
+        embedding_dropout_rate: 0.0
+        embedding_layer_norm: false
+        extra_attention_params:
+            num_kv_groups: 2
+        filter_size: 24576
+        hidden_size: 4096
+        initializer_range: 0.02
+        layer_norm_epsilon: 1.0e-05
+        max_position_embeddings: 131072
+        name: mistral
+        nonlinearity: swiglu
+        norm_first: true
+        norm_type: rmsnorm
+        num_heads: 16
+        num_hidden_layers: 2
+        pos_scaling_factor: 1.0
+        position_embedding_type: rotary
+        rope_theta: 100000000.0
+        rotary_dim: 256
+        share_embedding_weights: false
+        use_bias_in_output: false
+        use_ff_layer1_dropout: false
+        use_ffn_bias: false
+        use_ffn_bias_in_attention: false
+        use_projection_bias_in_attention: false
+        vocab_size: 32768
+
+        attention_inner_dim: 2048
+        rotary_dim: 128
+
+        fp16_type: bfloat16
+        mixed_precision: true
+
+    model_dir: check_checkpoints/
+    seed: 1
+  validate:
+    ckpt_path: /net/srinjoym-dev/srv/nfs/srinjoym-data/ws/monolith3/monolith/src/models/src/cerebras/modelzoo/tools/small_latest_dir/small_model_to_cs-2.4.mdl
+    val_dataloader: &id001
+      batch_size: 4
+      data_dir: /net/srinjoym-dev/srv/nfs/srinjoym-data/ws/monolith3/monolith/src/models/src/cerebras/modelzoo/mistral_checkpoints/h5_files
+      data_processor: GptHDF5DataProcessor
+      drop_last: false
+      num_workers: 1
+      # pad_last: true
+      persistent_workers: true
+      prefetch_factor: 10
+      shuffle: false
+      shuffle_buffer: 16384
+      shuffle_seed: 1

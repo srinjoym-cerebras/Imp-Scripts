@@ -1,0 +1,62 @@
+{
+    "dataset": {
+        "pack_sequences": true
+    },
+    "features": [
+        "input_ids",
+        "attention_mask",
+        "labels"
+    ],
+    "post-process": {
+        "average_bytes_per_sequence": 183,
+        "average_chars_per_sequence": 183,
+        "discarded_files": 0,
+        "eos_id": 2,
+        "loss_valid_tokens": 47,
+        "n_examples": 1,
+        "non_pad_tokens": 47,
+        "normalized_bytes_count": 183,
+        "normalized_chars_count": 183,
+        "num_masked_tokens": 81,
+        "num_pad_tokens": 81,
+        "num_tokens": 128,
+        "pad_id": 2,
+        "processed_files": 4,
+        "raw_bytes_count": 183,
+        "raw_chars_count": 183,
+        "successful_files": 4,
+        "vocab_size": 32000
+    },
+    "processing": {
+        "UNSAFE_skip_jsonl_decoding_errors": false,
+        "eos_id": 2,
+        "ftfy_normalizer": "NFC",
+        "huggingface_tokenizer": "mistralai/Mistral-7B-Instruct-v0.2",
+        "max_seq_length": 128,
+        "pad_id": 2,
+        "read_hook": "cerebras.modelzoo.data_preparation.data_preprocessing.hooks:text_read_hook",
+        "read_hook_kwargs": {
+            "text_key": "text"
+        },
+        "resume_from_checkpoint": false,
+        "seed": 0,
+        "short_seq_prob": 0.0,
+        "shuffle": true,
+        "tokenizer_params": {
+            "token": ""
+        },
+        "use_ftfy": true,
+        "wikitext_detokenize": false,
+        "write_in_batch": true
+    },
+    "setup": {
+        "data": {
+            "source": "/cb/home/nishitn/my_helper_functions/checkpoint_conversion/toy_dataset_checkpoint_conversion",
+            "split": "train",
+            "type": "local"
+        },
+        "mode": "pretraining",
+        "output_dir": "/net/srinjoym-dev/srv/nfs/srinjoym-data/ws/monolith3/monolith/src/models/src/cerebras/modelzoo/mistral_checkpoints/h5_files",
+        "processes": 16
+    }
+}
